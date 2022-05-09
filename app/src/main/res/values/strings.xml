@@ -3,4 +3,5 @@
     <string name="addnewroombutton">Add new room</string>
     <string name="addnewroomedittexthint">Enter new room</string>
     <string name="OK">OK</string>
+    <string name="addnewtaskbutton">Add new task</string>
 </resources>

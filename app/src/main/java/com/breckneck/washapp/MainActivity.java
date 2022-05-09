@@ -51,9 +51,11 @@ public class MainActivity extends AppCompatActivity {
         ZoneAdapter.OnZoneClickListener zoneClickListener = new ZoneAdapter.OnZoneClickListener() {
             @Override
             public void onZoneClick(Zone zone, int position) {
-                Intent intent = new Intent();
+                Intent intent = new Intent(MainActivity.this, ZoneDetails.class);
+                intent.putExtra("zoneid", zone.getId());
                 Toast.makeText(getApplicationContext(), ",был выбран элемент" + zone.getZoneName() + "  " + zone.getId(), Toast.LENGTH_SHORT).show();
 
+                startActivity(intent);
             }
         };
 
