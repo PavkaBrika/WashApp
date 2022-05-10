@@ -4,4 +4,8 @@
     <string name="addnewroomedittexthint">Enter new room</string>
     <string name="OK">OK</string>
     <string name="addnewtaskbutton">Add new task</string>
+    <string name="deletezone">Delete zone</string>
+    <string name="alertdialogdeletebutton">Are you sure You want to delete this zone?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

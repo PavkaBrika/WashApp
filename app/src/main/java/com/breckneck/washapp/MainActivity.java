@@ -65,9 +65,14 @@ public class MainActivity extends AppCompatActivity {
                 db = Room.databaseBuilder(getApplicationContext(), AppDataBaseZone.class, "ZoneDataBase").build();
                 zoneDao = db.zoneDao();
                 zonesList = db.zoneDao().getAll();
-                RecyclerView recyclerView = findViewById(R.id.zonelist);
-                ZoneAdapter adapter = new ZoneAdapter(getApplicationContext(), zonesList, zoneClickListener);
-                recyclerView.setAdapter(adapter);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        RecyclerView recyclerView = findViewById(R.id.zonelist);
+                        ZoneAdapter adapter = new ZoneAdapter(getApplicationContext(), zonesList, zoneClickListener);
+                        recyclerView.setAdapter(adapter);
+                    }
+                });
             }
         };
         Thread thread = new Thread(runnable);
