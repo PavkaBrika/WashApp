@@ -4,19 +4,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/id"
+    <Spinner
+        android:id="@+id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="id"
-        android:layout_margin="8dp" />
+        android:layout_margin="8dp"
+         />
 
     <EditText
         android:id="@+id/addNewZoneEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/addnewroomedittexthint"
-        android:layout_margin="8dp" />
+        android:layout_margin="8dp"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/okAddNewZoneButton"

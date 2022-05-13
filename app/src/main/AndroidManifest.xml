@@ -18,8 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddNewZoneActivity" />
-        <activity android:name=".ZoneDetails" />
+        <activity
+            android:name=".AddNewZoneActivity"
+            android:theme="@style/DialogActivities"
+            android:label="@string/Chooseanewzone"/>
+        <activity
+            android:name=".ZoneDetails" />
     </application>
 
 </manifest>

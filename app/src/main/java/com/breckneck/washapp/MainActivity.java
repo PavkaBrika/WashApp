@@ -1,9 +1,5 @@
 package com.breckneck.washapp;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
@@ -30,8 +26,11 @@ public class MainActivity extends AppCompatActivity {
     ZoneDao zoneDao;
     AppDataBaseZone db;
     Button addNewZone;
+    boolean hasVisited;
     String name;
     List<Zone> zonesList = new ArrayList<Zone>();
+
+    ZoneAdapter.OnZoneClickListener zoneClickListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,22 +47,43 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ZoneAdapter.OnZoneClickListener zoneClickListener = new ZoneAdapter.OnZoneClickListener() {
+        zoneClickListener = new ZoneAdapter.OnZoneClickListener() {
             @Override
             public void onZoneClick(Zone zone, int position) {
-                Intent intent = new Intent(MainActivity.this, ZoneDetails.class);
-                intent.putExtra("zoneid", zone.getId());
-                Toast.makeText(getApplicationContext(), ",был выбран элемент" + zone.getZoneName() + "  " + zone.getId(), Toast.LENGTH_SHORT).show();
-
-                startActivity(intent);
+                if (zone.getId() == 999) {
+                    Intent intent = new Intent(MainActivity.this, AddNewZoneActivity.class);
+                    startActivity(intent);
+                }
+                else {
+                    Intent intent = new Intent(MainActivity.this, ZoneDetails.class);
+                    intent.putExtra("zoneid", zone.getId());
+                    Toast.makeText(getApplicationContext(), ",был выбран элемент" + zone.getZoneName() + "  " + zone.getId(), Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                }
             }
         };
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
+                hasVisited = AppSettings.getBoolean("hasVisited", false);
                 db = Room.databaseBuilder(getApplicationContext(), AppDataBaseZone.class, "ZoneDataBase").build();
                 zoneDao = db.zoneDao();
+                if (!hasVisited) {
+                    Zone zone = new Zone();
+                    zone.id = 999;
+                    zone.zoneName = "";
+                    zone.setPicture(R.drawable.ic_outline_add_circle_outline_24);
+                    zoneDao.insert(zone);
+                    SharedPreferences.Editor editor = AppSettings.edit();
+                    editor.putBoolean("hasVisited", true);
+                    editor.apply();
+                }
                 zonesList = db.zoneDao().getAll();
                 runOnUiThread(new Runnable() {
                     @Override
@@ -77,14 +97,6 @@ public class MainActivity extends AppCompatActivity {
         };
         Thread thread = new Thread(runnable);
         thread.start();
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-
 
     }
 }

@@ -30,6 +30,9 @@ public class ZoneDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zonedetails);
 
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Bundle arguments = getIntent().getExtras();
         if (arguments != null) {
             id = arguments.getLong("zoneid");
@@ -57,35 +60,42 @@ public class ZoneDetails extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        menu.add(R.string.deletezone);
+       // menu.add(R.string.deletezone).setIcon(R.drawable.ic_launcher_foreground);
+        getMenuInflater().inflate(R.menu.menu_activity_zonedetails, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        String title = item.getTitle().toString();
-        String string = getString(R.string.deletezone);
-        if (title.equals(string)) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(ZoneDetails.this);
-            builder.setTitle(R.string.deletezone);
-            builder.setMessage(R.string.alertdialogdeletebutton);
-            builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    Runnable runnable = new Runnable() {
-                        @Override
-                        public void run() {
-                            db.zoneDao().delete(zone);
-                            Intent intent = new Intent(ZoneDetails.this, MainActivity.class);
-                            startActivity(intent);
-                        }
-                    };
-                    Thread thread = new Thread(runnable);
-                    thread.start();
-                }
-            });
-            builder.setNegativeButton(R.string.no, null);
-            builder.show();
+//        String title = item.getTitle().toString();
+//        String string = getString(R.string.deletezone);
+        int id = item.getItemId();
+//        if (title.equals(string)) {
+        switch (item.getItemId()) {
+            case R.id.delete_button:
+                AlertDialog.Builder builder = new AlertDialog.Builder(ZoneDetails.this);
+                builder.setTitle(R.string.deletezone);
+                builder.setMessage(R.string.alertdialogdeletebutton);
+                builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Runnable runnable = new Runnable() {
+                            @Override
+                            public void run() {
+                                db.zoneDao().delete(zone);
+                                finish();
+                            }
+                        };
+                        Thread thread = new Thread(runnable);
+                        thread.start();
+                    }
+                });
+                builder.setNegativeButton(R.string.no, null);
+                builder.show();
+                return true;
+            case android.R.id.home:
+                super.onBackPressed();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

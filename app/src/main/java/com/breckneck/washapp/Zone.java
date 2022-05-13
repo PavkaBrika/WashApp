@@ -9,6 +9,15 @@ public class Zone {
     @PrimaryKey
     public long id;
     public String zoneName;
+    public int picture;
+
+    public int getPicture() {
+        return picture;
+    }
+
+    public void setPicture(int picture) {
+        this.picture = picture;
+    }
 
     public long getId() {
         return id;

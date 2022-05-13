@@ -8,4 +8,14 @@
     <string name="alertdialogdeletebutton">Are you sure You want to delete this zone?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="livingroom">Living room</string>
+    <string name="Hallway">Hallway</string>
+    <string name="Kitchen">Kitchen</string>
+    <string name="Bedroom">Bedroom</string>
+    <string name="Bathroom">Bathroom</string>
+    <string name="Toilet">Toilet</string>
+    <string name="Childrensroom">Children`s room</string>
+    <string name="Balcony">Balcony</string>
+    <string name="Myversion">My version</string>
+    <string name="Chooseanewzone">Choose a new zone</string>
 </resources>

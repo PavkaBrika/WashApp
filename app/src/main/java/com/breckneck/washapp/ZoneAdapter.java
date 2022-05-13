@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -41,6 +42,7 @@ public class ZoneAdapter extends RecyclerView.Adapter<ZoneAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ZoneAdapter.ViewHolder holder, int position) {
         Zone zone = zoneList.get(position);
         holder.nameView.setText(zone.getZoneName());
+        holder.picView.setImageResource(zone.getPicture());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,9 +59,11 @@ public class ZoneAdapter extends RecyclerView.Adapter<ZoneAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         final TextView nameView;
+        final ImageView picView;
         public ViewHolder(View view) {
             super(view);
             nameView = view.findViewById(R.id.zonename);
+            picView = view.findViewById(R.id.zonepic);
         }
     }
 }
