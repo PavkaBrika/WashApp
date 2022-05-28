@@ -1,6 +1,7 @@
 package com.breckneck.washapp;
 
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -35,3 +36,4 @@ public class Zone {
         this.zoneName = zoneName;
     }
 }
+

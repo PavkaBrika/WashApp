@@ -11,17 +11,32 @@ import java.util.List;
 public interface ZoneDao {
 
     @Query("SELECT * FROM zone")
-    List<Zone> getAll();
+    List<Zone> getAllZones();
 
     @Query("SELECT * FROM zone WHERE id = :id")
-    Zone getById(long id);
+    Zone getZoneById(long id);
+
+    @Query("SELECT * FROM task")
+    List<Task> getAllTasks();
+
+    @Query("SELECT * FROM task WHERE zoneId = :id")
+    List<Task> getTasksByZoneId(long id);
 
     @Insert
-    void insert(Zone zone);
+    void insertZone(Zone zone);
 
     @Update
-    void update(Zone zone);
+    void updateZone(Zone zone);
 
     @Delete
-    void delete(Zone zone);
+    void deleteZone(Zone zone);
+
+    @Insert
+    void insertTask(Task task);
+
+    @Update
+    void updateTask(Task task);
+
+    @Delete
+    void deleteTask(Task task);
 }

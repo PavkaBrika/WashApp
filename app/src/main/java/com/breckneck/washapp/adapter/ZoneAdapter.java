@@ -1,4 +1,4 @@
-package com.breckneck.washapp;
+package com.breckneck.washapp.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,22 +10,25 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.breckneck.washapp.R;
+import com.breckneck.washapp.Zone;
+
 import java.util.List;
 
-public class ZoneAdapter extends RecyclerView.Adapter<ZoneAdapter.ViewHolder> {
+public class ZoneAdapter extends RecyclerView.Adapter<ZoneAdapter.zoneViewHolder> {
 
     private final LayoutInflater inflater;
     private final List<Zone> zoneList;
 
 
 
-    interface OnZoneClickListener {
+    public interface OnZoneClickListener {
         void onZoneClick(Zone zone, int position);
     }
 
     private final OnZoneClickListener onZoneClickListener;
 
-    ZoneAdapter(Context context, List<Zone> zoneList, OnZoneClickListener onZoneClickListener) {
+    public ZoneAdapter(Context context, List<Zone> zoneList, OnZoneClickListener onZoneClickListener) {
         this.zoneList = zoneList;
         this.inflater = LayoutInflater.from(context);
         this.onZoneClickListener = onZoneClickListener;
@@ -33,13 +36,13 @@ public class ZoneAdapter extends RecyclerView.Adapter<ZoneAdapter.ViewHolder> {
 
     @NonNull
     @Override
-    public ZoneAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ZoneAdapter.zoneViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.zone_list, parent, false);
-        return new ViewHolder(view);
+        return new zoneViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ZoneAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ZoneAdapter.zoneViewHolder holder, int position) {
         Zone zone = zoneList.get(position);
         holder.nameView.setText(zone.getZoneName());
         holder.picView.setImageResource(zone.getPicture());
@@ -57,10 +60,10 @@ public class ZoneAdapter extends RecyclerView.Adapter<ZoneAdapter.ViewHolder> {
         return zoneList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class zoneViewHolder extends RecyclerView.ViewHolder {
         final TextView nameView;
         final ImageView picView;
-        public ViewHolder(View view) {
+        public zoneViewHolder(View view) {
             super(view);
             nameView = view.findViewById(R.id.zonename);
             picView = view.findViewById(R.id.zonepic);

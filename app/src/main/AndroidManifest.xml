@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WashApp">
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,11 +19,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddNewZoneActivity"
+            android:name=".presentation.AddNewZoneActivity"
             android:theme="@style/DialogActivities"
             android:label="@string/Chooseanewzone"/>
         <activity
             android:name=".ZoneDetails" />
+        <activity
+            android:name=".TaskDetails" />
+        <activity
+            android:name=".presentation.AddNewTaskActivity"
+            android:theme="@style/DialogActivities"
+            android:label="@string/chooseanewtask"/>
     </application>
 
 </manifest>

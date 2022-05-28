@@ -1,34 +1,54 @@
 package com.breckneck.washapp;
 
-import android.app.ActionBar;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
+
+import com.breckneck.washapp.adapter.TaskAdapter;
+import com.breckneck.washapp.presentation.AddNewTaskActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ZoneDetails extends AppCompatActivity {
 
+    private SharedPreferences ZoneDetaisSP;
+
+    public static final String ZoneDetailsSP = "settings";
+
     long id;
     String title;
+    Task task;
     Zone zone;
     AppDataBaseZone db;
     ZoneDao zoneDao;
+    Button button;
+    boolean hasVisited;
+    List<Task> tasksList = new ArrayList<>();
+
+    TaskAdapter.OnTaskClickListener taskClickListener;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zonedetails);
+
+        ZoneDetaisSP = getSharedPreferences(ZoneDetailsSP, Context.MODE_PRIVATE);
+
+        button = findViewById(R.id.addNewTaskButton);
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -43,17 +63,53 @@ public class ZoneDetails extends AppCompatActivity {
             public void run() {
                 db = Room.databaseBuilder(getApplicationContext(), AppDataBaseZone.class, "ZoneDataBase").build();
                 zoneDao = db.zoneDao();
-                zone = db.zoneDao().getById(id);
-                getSupportActionBar().setTitle(zone.getZoneName());
+                zone = db.zoneDao().getZoneById(id);
+                getSupportActionBar().setTitle(zone.getZoneName() + " " + getString(R.string.tasks));
             }
         };
         Thread thread = new Thread(runnable);
         thread.start();
+
+        taskClickListener = new TaskAdapter.OnTaskClickListener() {
+            @Override
+            public void onTaskClick(Task task, int position) {
+                Intent intent = new Intent(ZoneDetails.this, TaskDetails.class);
+                startActivity(intent);
+            }
+        };
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ZoneDetails.this, AddNewTaskActivity.class);
+                intent.putExtra("zoneid", id);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                db = Room.databaseBuilder(getApplicationContext(), AppDataBaseZone.class, "ZoneDataBase").build();
+                zoneDao = db.zoneDao();
+                tasksList = db.zoneDao().getTasksByZoneId(id);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        RecyclerView recyclerView = findViewById(R.id.tasklist);
+                        TaskAdapter adapter = new TaskAdapter(getApplicationContext(), tasksList, taskClickListener);
+                        recyclerView.setAdapter(adapter);
+                    }
+                });
+            }
+        };
+        Thread thread = new Thread(runnable);
+        thread.start();
 
     }
 
@@ -82,7 +138,7 @@ public class ZoneDetails extends AppCompatActivity {
                         Runnable runnable = new Runnable() {
                             @Override
                             public void run() {
-                                db.zoneDao().delete(zone);
+                                db.zoneDao().deleteZone(zone);
                                 finish();
                             }
                         };

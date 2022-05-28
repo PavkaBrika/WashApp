@@ -1,4 +1,4 @@
-package com.breckneck.washapp;
+package com.breckneck.washapp.presentation;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,6 +12,11 @@ import android.widget.Spinner;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
+
+import com.breckneck.washapp.AppDataBaseZone;
+import com.breckneck.washapp.R;
+import com.breckneck.washapp.Zone;
+import com.breckneck.washapp.ZoneDao;
 
 public class AddNewZoneActivity extends AppCompatActivity {
 
@@ -85,7 +90,7 @@ public class AddNewZoneActivity extends AppCompatActivity {
                         Zone zone = new Zone();
                         zone.id = idzone;
                         zone.zoneName = name;
-                        zoneDao.insert(zone);
+                        zoneDao.insertZone(zone);
                     }
                 };
                 Thread thread = new Thread(runnable);

@@ -18,4 +18,6 @@
     <string name="Balcony">Balcony</string>
     <string name="Myversion">My version</string>
     <string name="Chooseanewzone">Choose a new zone</string>
+    <string name="chooseanewtask">Choose a new task</string>
+    <string name="tasks">Tasks</string>
 </resources>

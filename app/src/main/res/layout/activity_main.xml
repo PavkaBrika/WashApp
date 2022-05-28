@@ -5,7 +5,7 @@
     style="@style/MainActivityBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".presentation.MainActivity"
     android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -13,17 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-    <Button
-        android:id="@+id/addNewZoneButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="Add new room"
-        android:layout_alignParentBottom="true"/>
-
-
-
 
 
 </RelativeLayout>
