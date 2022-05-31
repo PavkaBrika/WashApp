@@ -1,10 +1,13 @@
-package com.breckneck.washapp;
+package com.breckneck.washapp.data.storage.database;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
+
+import com.breckneck.washapp.data.storage.entity.Task;
+import com.breckneck.washapp.data.storage.entity.Zone;
 
 import java.util.List;
 @Dao

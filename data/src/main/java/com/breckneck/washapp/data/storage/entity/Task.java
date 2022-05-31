@@ -1,4 +1,4 @@
-package com.breckneck.washapp;
+package com.breckneck.washapp.data.storage.entity;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

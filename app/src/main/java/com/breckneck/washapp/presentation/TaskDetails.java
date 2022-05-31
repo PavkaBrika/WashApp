@@ -1,9 +1,11 @@
-package com.breckneck.washapp;
+package com.breckneck.washapp.presentation;
 
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.breckneck.washapp.R;
 
 public class TaskDetails extends AppCompatActivity {
 

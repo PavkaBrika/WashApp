@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.breckneck.washapp.R;
-import com.breckneck.washapp.Task;
+import com.breckneck.washapp.model.Task;
 
 import java.util.List;
 

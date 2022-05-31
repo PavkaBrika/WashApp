@@ -10,17 +10,17 @@
         <entry key="..\:/AndroidPrograms/WashApp/app/src/main/res/drawable/ic_baseline_delete_outline_24.xml" value="0.2075" />
         <entry key="..\:/AndroidPrograms/WashApp/app/src/main/res/drawable/ic_outline_add_circle_outline_24.xml" value="0.2075" />
         <entry key="..\:/AndroidPrograms/WashApp/app/src/main/res/layout/activity_addnewroom.xml" value="0.37864583333333335" />
-        <entry key="..\:/AndroidPrograms/WashApp/app/src/main/res/layout/activity_addnewtask.xml" value="0.37864583333333335" />
+        <entry key="..\:/AndroidPrograms/WashApp/app/src/main/res/layout/activity_addnewtask.xml" value="0.22" />
         <entry key="..\:/AndroidPrograms/WashApp/app/src/main/res/layout/activity_addnewzone.xml" value="0.378125" />
         <entry key="..\:/AndroidPrograms/WashApp/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/AndroidPrograms/WashApp/app/src/main/res/layout/activity_taskdetails.xml" value="0.37864583333333335" />
-        <entry key="..\:/AndroidPrograms/WashApp/app/src/main/res/layout/activity_zonedetails.xml" value="0.33" />
+        <entry key="..\:/AndroidPrograms/WashApp/app/src/main/res/layout/activity_zonedetails.xml" value="0.22" />
         <entry key="..\:/AndroidPrograms/WashApp/app/src/main/res/layout/dialog_bg.xml" value="0.37864583333333335" />
         <entry key="..\:/AndroidPrograms/WashApp/app/src/main/res/layout/layout_zonedetails.xml" value="0.37864583333333335" />
         <entry key="..\:/AndroidPrograms/WashApp/app/src/main/res/layout/room_list.xml" value="0.37864583333333335" />
         <entry key="..\:/AndroidPrograms/WashApp/app/src/main/res/layout/task_list.xml" value="0.37864583333333335" />
         <entry key="..\:/AndroidPrograms/WashApp/app/src/main/res/layout/zone_list.xml" value="0.37864583333333335" />
-        <entry key="..\:/AndroidPrograms/WashApp/app/src/main/res/menu/menu_activity_zonedetails.xml" value="0.33" />
+        <entry key="..\:/AndroidPrograms/WashApp/app/src/main/res/menu/menu_activity_zonedetails.xml" value="0.25" />
       </map>
     </option>
   </component>

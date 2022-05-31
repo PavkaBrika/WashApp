@@ -23,9 +23,9 @@
             android:theme="@style/DialogActivities"
             android:label="@string/Chooseanewzone"/>
         <activity
-            android:name=".ZoneDetails" />
+            android:name=".presentation.ZoneDetails" />
         <activity
-            android:name=".TaskDetails" />
+            android:name=".presentation.TaskDetails" />
         <activity
             android:name=".presentation.AddNewTaskActivity"
             android:theme="@style/DialogActivities"

@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.breckneck.washapp.R;
-import com.breckneck.washapp.Zone;
+import com.breckneck.washapp.model.Zone;
 
 import java.util.List;
 
